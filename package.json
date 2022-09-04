@@ -1,0 +1,34 @@
+{
+  "name": "birdpals",
+  "version": "1.0.0",
+  "description": "Birdpals game!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Gasegamer",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "discord.js": "^12.5.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "express-socket.io-session": "^1.3.5",
+    "helmet": "^4.6.0",
+    "noswearing": "^1.2.0",
+    "playfab-sdk": "^2.68.210511",
+    "poly-decomp": "^0.3.0",
+    "rate-limiter-flexible": "^2.2.4",
+    "socket.io": "^2.4.1",
+    "tinyld": "^1.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BirdpalsTeam/Pixi-Js-Version.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BirdpalsTeam/Pixi-Js-Version/issues"
+  },
+  "homepage": "https://github.com/BirdpalsTeam/Pixi-Js-Version#readme"
+}
