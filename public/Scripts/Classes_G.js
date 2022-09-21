@@ -101,6 +101,9 @@ class Foreground extends PIXI.Sprite{
 	}
 	changeTexture(newRoom, isOriginal){
 		if(isOriginal == true){
+			if(newRoom != "cabin"){
+				this.x = 0
+			}//hacky fix, fix later
 			this.texture = resources[newRoom].textures[`${newRoom}_Foreground.png`];
 			this.Data = resources[newRoom].data.frames[`${newRoom}_Foreground.png`];
 			this.y = this.Data.frame.y - this.Data.frame.h;
