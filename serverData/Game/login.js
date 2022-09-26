@@ -80,6 +80,7 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 																biography = "love";
 															}
 															if(players.length > 0){	//Check if there is at least one player online
+																					//This doesn't work and there's a new solution but I'm scared to remove it
 																let logged, preventRecursion;
 																preventRecursion = Object.keys(io.sockets.sockets);
 																let playerAlreadyLogged = server_utils.getElementFromArrayByValue(PlayFabId, 'playerId', preventRecursion);
@@ -140,6 +141,24 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 															console.log("There's an error here: " + error);
 														}
 													})
+
+													socket.gameRoom = rooms.town.name;
+
+													//Checks if the Player is in the Room and deletes any Clones
+													let thisPlayerRoom = server_utils.getElementFromArrayByValue(socket.gameRoom, 'name', Object.values(rooms));
+													console.log(userInfo)
+													if (thisPlayerRoom){
+														thisPlayerRoom.players.forEach(player=>{
+															if(player.username.toLowerCase() == userInfo.Username && player.id != userInfo.id){
+																console.log("Two of the Same Players Found. Deleting Clone.")
+																socket.broadcast.to(socket.gameRoom).emit('byePlayer', player);
+																server_utils.removeElementFromArray(player, players);
+																server_utils.removeElementFromArray(player, thisPlayerRoom.players);
+															}
+														})
+													}
+
+													//Adds Player to Rooms and Other Clients
 													thisPlayer = new Player(PlayFabId, resultFromAuthentication.data.UserInfo.TitleInfo.DisplayName, playerGear, biography, result.data.Friends);
 													if(server_utils.getElementFromArrayByValue(PlayFabId, 'id', devTeam.devs) != false){
 														socket.isDev = true;
@@ -150,11 +169,9 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 													players.push(thisPlayer);
 													socket.playerId = resultFromAuthentication.data.UserInfo.PlayFabId;
 													socket.join(rooms.town.name);
-													socket.gameRoom = rooms.town.name;
 													rooms.town.players.push(thisPlayer);
 													socket.emit('readyToPlay?');	//Say to the client they can already start playing
 													socket.broadcast.to(socket.gameRoom).emit('newPlayer', thisPlayer); //Emit this player to all clients logged in
-
 												}
 											})
 										}

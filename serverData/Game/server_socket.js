@@ -109,10 +109,6 @@ io.on('connection', (socket) => {
 					clearInterval(player.movePlayerInterval);
 					player.isMoving == false;
 				}
-				if(player.id == socket.id){
-					console.log("Two of the Same Players Found. Deleting Clone.")
-					socket.broadcast.to(socket.gameRoom).emit('byePlayer', player);
-				}
 			})
 			socket.emit('loggedIn', (preventRecursion)); //there is a problem here
 			socket.isAFK = setTimeout(()=>{	//AFK cronometer
