@@ -143,20 +143,23 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 													})
 
 													socket.gameRoom = rooms.town.name;
+													console.log(Object.entries(rooms)[0])
 
 													//Checks if the Player is in the Room and deletes any Clones
-													let thisPlayerRoom = server_utils.getElementFromArrayByValue(socket.gameRoom, 'name', Object.values(rooms));
-													console.log(userInfo)
-													if (thisPlayerRoom){
-														thisPlayerRoom.players.forEach(player=>{
-															if(player.username.toLowerCase() == userInfo.Username && player.id != userInfo.id){
-																console.log("Two of the Same Players Found. Deleting Clone.")
-																socket.broadcast.to(socket.gameRoom).emit('byePlayer', player);
-																server_utils.removeElementFromArray(player, players);
-																server_utils.removeElementFromArray(player, thisPlayerRoom.players);
-															}
-														})
-													}
+													Object.entries(rooms).forEach(([_room,_value]) => {
+														let thisPlayerRoom = _value;
+														if (thisPlayerRoom){
+															thisPlayerRoom.players.forEach(player=>{
+																if(player.username.toLowerCase() == userInfo.Username && player.id != userInfo.id){
+																	console.log("Two of the Same Players Found. Deleting Clone.")
+																	socket.broadcast.to(socket.gameRoom).emit('byePlayer', player);
+																	//I would disconnect the clone player here but I can't figure out a way to do that so hahahahahaaaaaaaa
+																	server_utils.removeElementFromArray(player, players);
+																	server_utils.removeElementFromArray(player, thisPlayerRoom.players);
+																}
+															})
+														}
+													})
 
 													//Adds Player to Rooms and Other Clients
 													thisPlayer = new Player(PlayFabId, resultFromAuthentication.data.UserInfo.TitleInfo.DisplayName, playerGear, biography, result.data.Friends);
