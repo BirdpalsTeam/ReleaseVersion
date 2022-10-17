@@ -61,7 +61,7 @@ var settingsDiv = document.getElementById("SettingsDiv");
 function toggleSettings(){
 	settingsDiv.hidden = !settingsDiv.hidden;
 }
-document.getElementById("SettingsButton").addEventListener('click',function(){toggleSettings();console.log("CLICK")})
+//document.getElementById("SettingsButton").addEventListener('click',function(){toggleSettings();console.log("CLICK")})
 
 var uncheckedImg = new Image();
 uncheckedImg.src = "Sprites/hud/unchecked.png"
