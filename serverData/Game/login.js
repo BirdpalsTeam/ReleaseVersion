@@ -143,7 +143,6 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 													})
 
 													socket.gameRoom = rooms.town.name;
-													console.log(Object.entries(rooms)[0])
 
 													//Checks if the Player is in the Room and deletes any Clones
 													Object.entries(rooms).forEach(([_room,_value]) => {
