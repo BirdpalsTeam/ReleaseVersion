@@ -118,9 +118,9 @@ function loadWorld(){
 			currentRoom.getCollision('town');
 			currentRoom.getObjects(resources);
 			
-			let localG = document.createElement('script');
-			localG.src = 'Scripts/localG.js';
-			document.getElementById('Scripts').appendChild(localG);
+			var script = document.createElement("script");
+			script.src = "./Scripts/localG.js";
+			document.head.appendChild(script);
 		}else{
 			window.setTimeout(waitServerResponse, 1000 / 60); 
 		}
