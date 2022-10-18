@@ -27,8 +27,11 @@ document.getElementById('bird_color').addEventListener("input", function(c){
 }, false);
 */
 
-inventory = new Inventory();
+inventory = null;
 document.getElementById('inventory').onclick = function(){
+	if (inventory == null){
+		inventory = new Inventory();
+	}
 	inventory.open();
 }
 
