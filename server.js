@@ -5,6 +5,7 @@ var compression = require('compression');
 var express = require('express');
 var helmet = require('helmet');
 var app = express();
+const PORTNUM = 25568;
 const http = require('http').Server(app);
 const io = require('socket.io')(http,{
 	cors: {
@@ -120,7 +121,7 @@ app.get('/*', (req, res, next) =>{
 //Websockets communication
 server_socket.connect(io, sharedsession(session), PlayFabServer, PlayFabAdmin, discordBot.client, discordBot);
 
-//Start the server on port 3000
-http.listen(process.env.PORT || 3000, () => {
-	console.log('listening on *:3000');
+//Start the server on port 
+http.listen(process.env.PORT || PORTNUM, () => {
+	console.log('listening on *:PORTNUM');
 });
