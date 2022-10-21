@@ -23,14 +23,12 @@ class Inventory extends Book{
 		})
 
 		let bio = document.getElementById('bioInput');
-		if(bio.hidden == false){
-			if(bio.value !== ''){
-				command('/changeBio', bio.value);
-				localPlayer.bio = bio.value;
-			} 
-			bio.hidden = true;
-			bio.value = '';
-		}
+		if(bio.value !== ''){
+			command('/changeBio', bio.value);
+			localPlayer.bio = bio.value;
+			this.bio = bio.value;
+		} 
+		bio.hidden = true;
 		command('/updateInventory', this.items);
 		this.isChanging = true;
 		localPlayer.updateGear();
@@ -162,7 +160,6 @@ class Cell extends PIXI.Graphics{
 			}
 		})
 		this.on('pointerdown', (event) => {
-			console.log(localPlayer.gear);
 			if(this.isSelected == false){
 				this.fillGray();
 				this.isSelected = true;
@@ -193,7 +190,6 @@ class Cell extends PIXI.Graphics{
 			}
 			this.parent.big_bird.gear = localPlayer.gear;
 			this.parent.big_bird.updateGear();
-			console.log(localPlayer.gear);
 		});
 	}
 
@@ -282,7 +278,7 @@ class Bio extends PIXI.Sprite{
 		this.isOpen = true;
 		this.bio.hidden = false;
 		this.texture = resources.bio_button_opened.texture;
-		if(this.parent.bio !== undefined || this.parent.bio != "I like to play Birdpals!") this.bio.value = this.parent.bio;
+		if(this.parent.bio !== undefined){this.bio.value = this.parent.bio};
 	}
 
 	close(){

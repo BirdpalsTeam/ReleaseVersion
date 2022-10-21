@@ -17,7 +17,7 @@ class Player extends PIXI.Sprite{
 		this.canMove = true;
 		this.canDrawUsername = true;
 		this.collider = new Point(this.x, this.y);
-		this.hitArea = new PIXI.Polygon([-40,-130,40,-130,40,-20,-40,-20]);
+		this.hitArea = new PIXI.Polygon([-40,-100,40,-100,40,10,-40,10]);
 
 		this.lookingInt = 4;
 		

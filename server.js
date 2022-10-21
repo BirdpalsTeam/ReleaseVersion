@@ -123,5 +123,5 @@ server_socket.connect(io, sharedsession(session), PlayFabServer, PlayFabAdmin, d
 
 //Start the server on port 
 http.listen(process.env.PORT || PORTNUM, () => {
-	console.log('listening on *:PORTNUM');
+	console.log('listening on *:'+PORTNUM);
 });
