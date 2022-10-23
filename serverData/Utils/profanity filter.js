@@ -38,11 +38,9 @@ exports.filter = function profanity(sentence){
 		let originalSentence = sentence.slice(0, -2); //Removes the " a"
 		if(Object.keys(profanityJson).includes(language) == true){ //Check if there is a profanity word list for this language
 			let result = checker(originalSentence, language)[0]; //Check if there is a bad word by spelling
-			console.log(result)
 			if(findBadWord(result, originalSentence, language) == true){isBadword = true; console.log(possibility)}
 		}else if(isBadword == false){
 			let result = checker(originalSentence, 'en')[0];
-			console.log(result)
 			if(findBadWord(result, originalSentence, 'en') == true){isBadword = true; console.log(possibility)} //Guarantee it's not an english bad word
 		}
 	})
