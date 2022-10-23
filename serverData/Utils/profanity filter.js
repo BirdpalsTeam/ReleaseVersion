@@ -34,13 +34,16 @@ exports.filter = function profanity(sentence){
 	let isBadword = false;
 	detectAll(sentence).forEach(possibility =>{
 		let language = possibility.lang;	//Return the language as iso2 format
+		
 		let originalSentence = sentence.slice(0, -2); //Removes the " a"
 		if(Object.keys(profanityJson).includes(language) == true){ //Check if there is a profanity word list for this language
 			let result = checker(originalSentence, language)[0]; //Check if there is a bad word by spelling
-			if(findBadWord(result, originalSentence, language) == true){isBadword = true}
+			console.log(result)
+			if(findBadWord(result, originalSentence, language) == true){isBadword = true; console.log(possibility)}
 		}else if(isBadword == false){
 			let result = checker(originalSentence, 'en')[0];
-			if(findBadWord(result, originalSentence, 'en') == true){isBadword = true} //Guarantee it's not an english bad word
+			console.log(result)
+			if(findBadWord(result, originalSentence, 'en') == true){isBadword = true; console.log(possibility)} //Guarantee it's not an english bad word
 		}
 	})
 	return isBadword == true ? true : false;
