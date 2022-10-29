@@ -16,15 +16,7 @@ exports.run = (socket, rooms, AFKTime, client, server_discord, server_utils, pro
 			}else{
 				clearInterval(player.movePlayerInterval);
 				player.isMoving = false;
-				try{
-					player.move(thisPlayerRoom);
-				}
-				catch(err){
-					console.log("Server Crash due to Player Move Bug Avoided. Data:")
-					console.log(err)
-					console.log(player)
-					console.log(socket.playerId)
-				}
+				player.move(thisPlayerRoom);
 			}
 			socket.broadcast.to(socket.gameRoom).emit('playerIsMoving', movePlayerObject);
     })//Player Movement end
