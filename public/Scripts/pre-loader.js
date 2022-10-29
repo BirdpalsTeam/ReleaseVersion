@@ -34,30 +34,32 @@ window.onload = ()=>{
 	loadWorld();
 }
 
+var antiCache = "/?"+escape(new Date());
 function loadWorld(){
 	//new Date() is used to ignore the stupid dumb idiotic cache
-	app.loader.add('allRooms', `${JSONSrc}roomsJSON.json` + escape(new Date()));
-	app.loader.add('town', `${JSONSrc}town.json` + escape(new Date()));
-	app.loader.add('bird_blue', `${JSONSrc}bird_blue.json` + escape(new Date()));
-	app.loader.add('bubble_message', `${spritesSrc}hud/bubble.png` + escape(new Date()));
-	app.loader.add('items', `${JSONSrc}items.json` + escape(new Date()));
-	app.loader.add('Arial', `${fontSrc}Arial.fnt` + escape(new Date()));
-	app.loader.add('BCaslon_font', `${fontSrc}CaslonAntique-BoldItalic.fnt` + escape(new Date()));
-	app.loader.add('Caslon_font', `${fontSrc}CaslonAntique-BoldItalic.ttf` + escape(new Date()));
-	app.loader.add('VarelaRound', `${fontSrc}VarelaRound-Regular.ttf` + escape(new Date()));
-	app.loader.add('book', `${hudSrc}book.png` + escape(new Date()));
-	app.loader.add('book_X', `${hudSrc}book_X.png` + escape(new Date()));
-	app.loader.add('arrow', `${hudSrc}arrow.png` + escape(new Date()));
-	app.loader.add('bio_button', `${hudSrc}bio_button.png` + escape(new Date()));
-	app.loader.add('bio_button_opened', `${hudSrc}bio_button_opened.png` + escape(new Date()));
-	app.loader.add('report_button', `${hudSrc}reportBookmark.png` + escape(new Date()));
-	app.loader.add('loading_i', `${hudSrc}loading_i.png` + escape(new Date()));
-	app.loader.add('big_bird', `${hudSrc}big_bird.png` + escape(new Date()));
-	app.loader.add('snow', `${JSONSrc}emitter.json` + escape(new Date()));
-	app.loader.add('snowTexture', `${hudSrc}Snow100.png` + escape(new Date()));
-	app.loader.add('colorReplacementFrag', `Scripts/colorReplace.frag` + escape(new Date()));
-	app.loader.add('shader', `Scripts/shader.frag` + escape(new Date()));
-	app.loader.add('bubblePop', `${audioSrc}bubblePop.wav` + escape(new Date()))
+	
+	app.loader.add('allRooms', `${JSONSrc}roomsJSON.json` + antiCache);
+	app.loader.add('town', `${JSONSrc}town.json` + antiCache);
+	app.loader.add('bird_blue', `${JSONSrc}bird_blue.json` + antiCache);
+	app.loader.add('bubble_message', `${spritesSrc}hud/bubble.png` + antiCache);
+	app.loader.add('items', `${JSONSrc}items.json` + antiCache);
+	app.loader.add('Arial', `${fontSrc}Arial.fnt` + antiCache);
+	app.loader.add('BCaslon_font', `${fontSrc}CaslonAntique-BoldItalic.fnt` + antiCache);
+	app.loader.add('Caslon_font', `${fontSrc}CaslonAntique-BoldItalic.ttf` + antiCache);
+	app.loader.add('VarelaRound', `${fontSrc}VarelaRound-Regular.ttf` + antiCache);
+	app.loader.add('book', `${hudSrc}book.png` + antiCache);
+	app.loader.add('book_X', `${hudSrc}book_X.png` + antiCache);
+	app.loader.add('arrow', `${hudSrc}arrow.png` + antiCache);
+	app.loader.add('bio_button', `${hudSrc}bio_button.png` + antiCache);
+	app.loader.add('bio_button_opened', `${hudSrc}bio_button_opened.png` + antiCache);
+	app.loader.add('report_button', `${hudSrc}reportBookmark.png` + antiCache);
+	app.loader.add('loading_i', `${hudSrc}loading_i.png` + antiCache);
+	app.loader.add('big_bird', `${hudSrc}big_bird.png` + antiCache);
+	app.loader.add('snow', `${JSONSrc}emitter.json` + antiCache);
+	app.loader.add('snowTexture', `${hudSrc}Snow100.png` + antiCache);
+	app.loader.add('colorReplacementFrag', `Scripts/colorReplace.frag` + antiCache);
+	app.loader.add('shader', `Scripts/shader.frag` + antiCache);
+	app.loader.add('bubblePop', `${audioSrc}bubblePop.wav` + antiCache)
 	
 	app.loader.onProgress.add(showLoading);
 	app.loader.onComplete.add(finishedPreLoading);
