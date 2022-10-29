@@ -100,7 +100,9 @@ class Player extends PIXI.Sprite{
 				this.movePlayer();
 			}else{
 				this.isMoving = false;
-				this.movePlayerInterval.destroy();
+				if(this.movePlayerInterval != undefined){ //Makes sure movePlayerInterval has actually been set
+					this.movePlayerInterval.destroy();
+				}
 				this.movePlayer();
 			}
 			this.whereToLook();

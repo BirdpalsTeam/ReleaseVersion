@@ -45,8 +45,10 @@ socket.on('newPlayer', (player) => {
 
 socket.on('byePlayer', (playerThatLeft) =>{
 	let playerG = getElementFromArray(playerThatLeft, playerThatLeft.id, playersInGame);
-	removeElementFromArray(playerG, playersInGame);
-	objects.removeChild(playerG);
+	if(playerG != false){
+		removeElementFromArray(playerG, playersInGame);
+		objects.removeChild(playerG);
+	}
 });
 
 socket.on('joinRoom', (joinRoom) =>{
@@ -60,30 +62,35 @@ socket.on('leaveRoom', () => {
 
 socket.on('playerIsMoving', (player) =>{
 	let playerG = getElementFromArray(player, player.id, playersInGame);
-	playerG.mouseX = player.mouseX;
-	playerG.mouseY = player.mouseY
-	playerG.move();
+	if(playerG != false){ //Makes sure the Player is actually in playersInGame so the game doesn't get confused
+		playerG.mouseX = player.mouseX;
+		playerG.mouseY = player.mouseY
+		playerG.move();
+	}
 })
 
 socket.on('playerSaid', (player) => {
 	let playerO = getElementFromArray(player, 'id', objects.children);
+	if(playerO != false){
+		playerO.message = player.message;
 
-	playerO.message = player.message;
+		if(playerO.messageTimeout != undefined){
+			clearTimeout(playerO.messageTimeout);
+			if(playerO.bubble.children[0] !== undefined) playerO.bubble.removeChildAt(0);
+			playerO.drawBubble();
+		}else if(playerO.messageTimeout == undefined){
+			playerO.drawBubble();
+		}
 
-	if(playerO.messageTimeout != undefined){
-		clearTimeout(playerO.messageTimeout);
-		if(playerO.bubble.children[0] !== undefined) playerO.bubble.removeChildAt(0);
-		playerO.drawBubble();
-	}else if(playerO.messageTimeout == undefined){
-		playerO.drawBubble();
+		addToChatbox(`${playerO.username}: ${player.message}`);
 	}
-
-	addToChatbox(`${playerO.username}: ${player.message}`);
 });
 
 socket.on('changedBio', (newBio) =>{
 	let player = getElementFromArrayByValue(newBio.player, 'id', playersInGame);
-	player.bio = newBio.newBio;
+	if(player != false){
+		player.bio = newBio.newBio;
+	}
 })
 
 socket.on('changingInventory', (boolean) =>{
@@ -93,8 +100,10 @@ socket.on('changingInventory', (boolean) =>{
 })
 
 socket.on('changedBio', (newBio) =>{
-	let player = getElementFromArrayByValue(newBio.player, id, playersObject);
-	player.card.bio = newBio.newBio;
+	let player = getElementFromArrayByValue(newBio.player, 'id', playersInGame);
+	if(player != false){
+		player.bio = newBio.newBio;
+	}
 })
 
 socket.on("gotItem", (name) => {
@@ -104,8 +113,10 @@ socket.on("gotItem", (name) => {
 
 socket.on("playerUpdatedGear", (info) => {
 	let player = getElementFromArrayByValue(info.player, 'id', playersInGame);
-	player.gear = info.gear;
-	player.updateGear();
+	if(player != false){
+		player.gear = info.gear;
+		player.updateGear();
+	}
 })
 
 socket.on('M', (s) =>{
