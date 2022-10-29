@@ -34,7 +34,7 @@ window.onload = ()=>{
 	loadWorld();
 }
 
-var antiCache = "/?"+escape(new Date());
+var antiCache = "?"+(new Date()).getTime();
 function loadWorld(){
 	//new Date() is used to ignore the stupid dumb idiotic cache
 	
