@@ -106,25 +106,24 @@ class Book extends PIXI.Sprite{
 	}
 }
 
-class BirdColorReplacement extends PIXI.Filter{
-	constructor(newColor, epsilon){
-		if(epsilon == undefined){epsilon = 0.4}
-		super(null, resources.colorReplacementFrag.data, {
-			originalColor: PIXI.utils.hex2rgb(0x3db0ff),
-			newColor: PIXI.utils.hex2rgb(newColor),
-			epsilon: epsilon
-		})
+class BirdColorReplacement extends PIXI.Filter {
+	constructor(originalColor = 0x3db0ff, newColor, epsilon = 0.4) {
+	  super(null, resources.colorReplacementFrag.data, {
+		originalColor: PIXI.utils.hex2rgb(originalColor),
+		newColor: PIXI.utils.hex2rgb(newColor),
+		epsilon: epsilon,
+	  });
 	}
-}
-
-class MultiBirdColorReplacement extends PIXI.Filter{
-	constructor(originalColor, newColor){
-		super(null, resources.shader.data, {
-			bottomColor: PIXI.utils.hex2rgb(0x2975aa),
-			upperColor: PIXI.utils.hex2rgb(0x359ade),
-			newBottomColor: PIXI.utils.hex2rgb(0x000000),
-			newUpperColor: PIXI.utils.hex2rgb(0xFF0000)
-		})
+  }
+  
+class MultiBirdColorReplacement extends PIXI.Filter {
+	constructor(originalBottomColor=0x38a2eb, originalUpperCollor=0x359ade, newBottomColor=0x38a2eb, newUpperColor=0x359ade) {
+	  	super(null, resources.shader.data, {
+			bottomColor: PIXI.utils.hex2rgb(originalBottomColor),
+			upperColor: PIXI.utils.hex2rgb(originalUpperCollor),
+			newBottomColor: PIXI.utils.hex2rgb(newBottomColor),
+			newUpperColor: PIXI.utils.hex2rgb(newUpperColor),
+	  	});
 	}
 }
 

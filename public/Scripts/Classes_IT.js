@@ -10,9 +10,15 @@ class Item extends PIXI.Sprite{
 	}
 
 	updateFrame(frame){
-		this.texture = resources.items.textures[`${this.item}_${frame}.png`];
-		this.y = this.itemData.frames[`${this.item}_${frame}.png`].position.y;
-		this.x = this.itemData.frames[`${this.item}_${frame}.png`].position.x;
+		if(this.itemData.frames[`${this.item}_${frame}.png`] != undefined){
+			this.visible = true;
+			this.texture = resources.items.textures[`${this.item}_${frame}.png`];
+			this.y = this.itemData.frames[`${this.item}_${frame}.png`].position.y;
+			this.x = this.itemData.frames[`${this.item}_${frame}.png`].position.x;
+		}
+		else{
+			this.visible = false;
+		}
 
 		this.frame = frame; //For debugging
 	}

@@ -106,7 +106,8 @@ socket.on('changedBio', (newBio) =>{
 	}
 })
 
-socket.on("resetInventory", (info) => {
+socket.on("gotItem", (name) => {
+	addToChatbox("You Found "+name+"!")
 	inventory.items = null;
 })
 

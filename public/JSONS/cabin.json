@@ -28,30 +28,30 @@
       "frame": {
         "x": 0,
         "y": 600,
-        "w": 387,
-        "h": 187
+        "w": 1000,
+        "h": 600
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 387,
-        "h": 187
+        "w": 1000,
+        "h": 600
       },
       "sourceSize": {
-        "w": 387,
-        "h": 187
+        "w": 1000,
+        "h": 600
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "cabin_Table.png": {
+    "cabin_table.png": {
       "frame": {
-        "x": 387,
-        "y": 600,
+        "x": 0,
+        "y": 1200,
         "w": 223,
         "h": 203
       },
@@ -75,34 +75,6 @@
         "x": 197,
         "y": 231
       }
-    },
-    "cabin_Table2.png": {
-      "frame": {
-        "x": 0,
-        "y": 787,
-        "w": 164,
-        "h": 137
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 164,
-        "h": 137
-      },
-      "sourceSize": {
-        "w": 164,
-        "h": 137
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      },
-      "position": {
-        "x": 701,
-        "y": 195
-      }
     }
   },
   "meta": {
@@ -112,7 +84,7 @@
     "format": "RGBA8888",
     "size": {
       "w": 1000,
-      "h": 924
+      "h": 1403
     },
     "scale": 1
   }

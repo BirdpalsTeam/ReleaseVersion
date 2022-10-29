@@ -29,7 +29,7 @@
         "x": 0,
         "y": 600,
         "w": 1000,
-        "h": 475
+        "h": 600
       },
       "rotated": false,
       "trimmed": false,
@@ -37,127 +37,43 @@
         "x": 0,
         "y": 0,
         "w": 1000,
-        "h": 475
+        "h": 600
       },
       "sourceSize": {
         "w": 1000,
-        "h": 475
+        "h": 600
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "shop_clothes 1.png": {
+    "shop_Boxes.png": {
       "frame": {
         "x": 0,
-        "y": 1075,
-        "w": 220,
-        "h": 145
+        "y": 1200,
+        "w": 215,
+        "h": 113
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 220,
-        "h": 145
+        "w": 215,
+        "h": 113
       },
       "sourceSize": {
-        "w": 220,
-        "h": 145
+        "w": 215,
+        "h": 113
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       },
       "position": {
-        "x": 196,
-        "y": 399
-      }
-    },
-    "shop_clothes 3.png": {
-      "frame": {
-        "x": 220,
-        "y": 1075,
-        "w": 204,
-        "h": 81
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 204,
-        "h": 81
-      },
-      "sourceSize": {
-        "w": 204,
-        "h": 81
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      },
-      "position": {
-        "x": 574,
-        "y": 345
-      }
-    },
-    "shop_clothes 2.png": {
-      "frame": {
-        "x": 424,
-        "y": 1075,
-        "w": 182,
-        "h": 102
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 182,
-        "h": 102
-      },
-      "sourceSize": {
-        "w": 182,
-        "h": 102
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      },
-      "position": {
-        "x": 622,
-        "y": 462
-      }
-    },
-    "shop_statue.png": {
-      "frame": {
-        "x": 220,
-        "y": 1156,
-        "w": 109,
-        "h": 138
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 109,
-        "h": 138
-      },
-      "sourceSize": {
-        "w": 109,
-        "h": 138
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      },
-      "position": {
-        "x": 445,
-        "y": 133
+        "x": 210,
+        "y": 267
       }
     }
   },
@@ -168,7 +84,7 @@
     "format": "RGBA8888",
     "size": {
       "w": 1000,
-      "h": 1294
+      "h": 1313
     },
     "scale": 1
   }

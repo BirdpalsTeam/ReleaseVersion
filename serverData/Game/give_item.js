@@ -1,5 +1,5 @@
 exports.run = (socket, AFKTime, PlayFabServer, server_utils, rateLimiter)=>{
-    var freeItems = ["eye_patch","pirate_hat"];
+    var freeItems = ["green_frog_hat","red_propeller_hat","halloween_scarf","red_nose"];
 
     socket.on('getFreeItem', (itemInfo) => {
         rateLimiter.consume(socket.id).then(()=>{
@@ -21,8 +21,15 @@ exports.run = (socket, AFKTime, PlayFabServer, server_utils, rateLimiter)=>{
                             server_utils.grantItemsToUser("Birdpals Catalog", [itemInfo.name], socket.playerId).then(result =>{
                                 i = freeItems.length;
                                 let tempItemInstanceId = result.data.ItemGrantResults[0].ItemInstanceId;
-                                PlayFabServer.UpdateUserInventoryItemCustomData({PlayFabId:socket.playerId,ItemInstanceId:tempItemInstanceId,Data: {"isEquipped": "false"}});
-                                socket.emit("resetInventory", '');
+                                let itemName = result.data.ItemGrantResults[0].DisplayName;
+                                PlayFabServer.UpdateUserInventoryItemCustomData({PlayFabId:socket.playerId,ItemInstanceId:tempItemInstanceId,Data: {"isEquipped": "false"}},(error,result)=>{
+                                    if(result != null){
+                                        socket.emit("gotItem", itemName);
+                                    }
+                                    else if(error != null){
+                                        console.log(error)
+                                    }
+                                });
                             }).catch(console.log);
                         }
                     }

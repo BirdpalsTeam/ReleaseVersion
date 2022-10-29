@@ -11,7 +11,7 @@ class Inventory extends Book{
 		this.drawGrid();
 		//this.drawArrows();
 		this.drawBio();
-		this.isChanging == false ? this.getInventory() : this.loadInventory();
+		this.getInventory();
 	}
 
 	customClose(){
@@ -214,14 +214,20 @@ class Cell extends PIXI.Graphics{
 
 	addIcon(item){
 		this.icon = new PIXI.Sprite(resources.items.textures[`${item.ItemId}_4.png`]);
-		if(this.icon.width > this.icon.height){ //Finds whether the width or height of the item is bigger, 
-												//then sets the size of the items to the cell size while keeping the aspect ratio
-			this.icon.height /= this.icon.width / this.nw;
-			this.icon.width = this.nw;
+		if(this.icon.width > 25){ //Checks if the Item is big enough to be sized correctly (otherwise the strtching would be BAD)
+			if(this.icon.width > this.icon.height){ //Finds whether the width or height of the item is bigger, 
+													//then sets the size of the items to the cell size while keeping the aspect ratio
+				this.icon.height /= this.icon.width / this.nw;
+				this.icon.width = this.nw;
+			}
+			else{
+				this.icon.width *= this.icon.height / this.nh;
+				this.icon.height = this.nh;
+			}
 		}
-		else{
-			this.icon.width *= this.icon.height / this.nh;
-			this.icon.height = this.nh;
+		else{ //Makes small items the max size before they look stretched
+			this.icon.width *= 1.5;
+			this.icon.height *= 1.5;
 		}
 		this.icon.anchor.set(0.5,0.5);
 		this.icon.x = this.nx + this.width / 2 - 2;
