@@ -150,6 +150,7 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 														if (thisPlayerRoom){
 															try{
 																thisPlayerRoom.players.forEach(player=>{
+																	console.log(player)
 																	if(player.username.toLowerCase() == userInfo.Username && player.id != userInfo.id){
 																		console.log("Two of the Same Players Found. Deleting Clone.")
 																		socket.broadcast.to(socket.gameRoom).emit('byePlayer', player);
