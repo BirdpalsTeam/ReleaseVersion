@@ -5,8 +5,7 @@ class Item extends PIXI.Sprite{
 		this.item = item;
 		this.frame = frame;
 		this.itemData = resources.items.data;
-		this.y = this.itemData.frames[`${item}_${frame}.png`].position.y;
-		this.x = this.itemData.frames[`${item}_${frame}.png`].position.x;
+		this.updateFrame(frame);
 	}
 
 	updateFrame(frame){
