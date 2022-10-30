@@ -4,6 +4,7 @@ class Room extends PIXI.Sprite{
 		this.originalRoom = room;
 		this.name = room;
 		this.loader = new PIXI.Loader();
+		this.loader.defaultQueryString=Date.now()+""
 		this.loader.onComplete.add(() =>{
 			this.changeTexture();
 			this.getObjects(currentRoom.loader.resources);
@@ -94,7 +95,6 @@ class RoomObject extends PIXI.Sprite{
 class Foreground extends PIXI.Sprite{
 	constructor(room){
 		super(resources[room].textures[`${room}_Foreground.png`]);
-		console.log(resources[room].textures);
 		this.Data = resources[room].data.frames[`${room}_Foreground.png`];
 		this.x = 0;
 		this.y = this.Data.frame.y - this.Data.frame.h;

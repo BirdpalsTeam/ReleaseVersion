@@ -1,3 +1,5 @@
+var antiCache = "?"+(new Date()).getTime(); console.log(antiCache)
+
 function getElementFromArray(element, customIdentifier, array){
 	let tempElement;
 	array.forEach(arrayElement =>{

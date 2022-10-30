@@ -123,6 +123,7 @@ class PingPong extends State{
 
 		chatbox.hidden = true;
 		this.stage.addChild(this.viewport);
+		this.loader.defaultQueryString=Date.now()+""
 		this.loader.add('racket', `Minigames/Ping Pong/racket.png`);
 		this.loader.add('tabble', `Minigames/Ping Pong/tabble.png`);
 		this.loader.add('ball', `Minigames/Ping Pong/ball.png`);

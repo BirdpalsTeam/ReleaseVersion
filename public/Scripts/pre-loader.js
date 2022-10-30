@@ -34,32 +34,33 @@ window.onload = ()=>{
 	loadWorld();
 }
 
-var antiCache = "?"+(new Date()).getTime();
 function loadWorld(){
 	//new Date() is used to ignore the stupid dumb idiotic cache
-	
-	app.loader.add('allRooms', `${JSONSrc}roomsJSON.json` + antiCache);
-	app.loader.add('town', `${JSONSrc}town.json` + antiCache);
-	app.loader.add('bird_blue', `${JSONSrc}bird_blue.json` + antiCache);
-	app.loader.add('bubble_message', `${spritesSrc}hud/bubble.png` + antiCache);
-	app.loader.add('items', `${JSONSrc}items.json` + antiCache);
-	app.loader.add('Arial', `${fontSrc}Arial.fnt` + antiCache);
-	app.loader.add('BCaslon_font', `${fontSrc}CaslonAntique-BoldItalic.fnt` + antiCache);
-	app.loader.add('Caslon_font', `${fontSrc}CaslonAntique-BoldItalic.ttf` + antiCache);
-	app.loader.add('VarelaRound', `${fontSrc}VarelaRound-Regular.ttf` + antiCache);
-	app.loader.add('book', `${hudSrc}book.png` + antiCache);
-	app.loader.add('book_X', `${hudSrc}book_X.png` + antiCache);
-	app.loader.add('arrow', `${hudSrc}arrow.png` + antiCache);
-	app.loader.add('bio_button', `${hudSrc}bio_button.png` + antiCache);
-	app.loader.add('bio_button_opened', `${hudSrc}bio_button_opened.png` + antiCache);
-	app.loader.add('report_button', `${hudSrc}reportBookmark.png` + antiCache);
-	app.loader.add('loading_i', `${hudSrc}loading_i.png` + antiCache);
-	app.loader.add('big_bird', `${hudSrc}big_bird.png` + antiCache);
-	app.loader.add('snow', `${JSONSrc}emitter.json` + antiCache);
-	app.loader.add('snowTexture', `${hudSrc}Snow100.png` + antiCache);
-	app.loader.add('colorReplacementFrag', `Scripts/colorReplace.frag` + antiCache);
-	app.loader.add('shader', `Scripts/shader.frag` + antiCache);
-	app.loader.add('bubblePop', `${audioSrc}bubblePop.wav` + antiCache)
+	app.loader.defaultQueryString=Date.now()+""
+
+	app.loader.add('allRooms', `${JSONSrc}roomsJSON.json`);
+	app.loader.add('town', `${JSONSrc}town.json`);
+	app.loader.add('bird_blue', `${JSONSrc}bird_blue.json`);
+	app.loader.add('bubble_message', `${spritesSrc}hud/bubble.png`);
+	app.loader.add('items', `${JSONSrc}items.json`);
+	app.loader.add('Arial', `${fontSrc}Arial.fnt`);
+	app.loader.add('BCaslon_font', `${fontSrc}CaslonAntique-BoldItalic.fnt`);
+	app.loader.add('Caslon_font', `${fontSrc}CaslonAntique-BoldItalic.ttf`);
+	app.loader.add('VarelaRound', `${fontSrc}VarelaRound-Regular.ttf`);
+	app.loader.add('book', `${hudSrc}book.png`);
+	app.loader.add('book_X', `${hudSrc}book_X.png`);
+	app.loader.add('arrow', `${hudSrc}arrow.png`);
+	app.loader.add('bio_button', `${hudSrc}bio_button.png`);
+	app.loader.add('bio_button_opened', `${hudSrc}bio_button_opened.png`);
+	app.loader.add('report_button', `${hudSrc}reportBookmark.png`);
+	app.loader.add('loading_i', `${hudSrc}loading_i.png`);
+	app.loader.add('big_bird', `${hudSrc}big_bird.png`);
+	app.loader.add('snow', `${JSONSrc}emitter.json`);
+	app.loader.add('snowTexture', `${hudSrc}Snow100.png`);
+	app.loader.add('colorReplacementFrag', `Scripts/colorReplace.frag`);
+	app.loader.add('shader', `Scripts/shader.frag`);
+	app.loader.add('bubblePop', `${audioSrc}bubblePop.wav`)
+	console.log(app.loader)
 	
 	app.loader.onProgress.add(showLoading);
 	app.loader.onComplete.add(finishedPreLoading);
