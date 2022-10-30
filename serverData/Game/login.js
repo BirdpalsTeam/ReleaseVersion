@@ -150,13 +150,14 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 														if (thisPlayerRoom){
 															try{
 																thisPlayerRoom.players.forEach(player=>{
-																	console.log(player)
-																	if(player.username.toLowerCase() == userInfo.Username && player.id != userInfo.id){
-																		console.log("Two of the Same Players Found. Deleting Clone.")
-																		socket.broadcast.to(socket.gameRoom).emit('byePlayer', player);
-																		//I would disconnect the clone player here but I can't figure out a way to do that so hahahahahaaaaaaaa
-																		server_utils.removeElementFromArray(player, players);
-																		server_utils.removeElementFromArray(player, thisPlayerRoom.players);
+																	if(player != undefined){
+																		if(player.username.toLowerCase() == userInfo.Username && player.id != userInfo.id){
+																			console.log("Two of the Same Players Found. Deleting Clone.")
+																			socket.broadcast.to(socket.gameRoom).emit('byePlayer', player);
+																			//I would disconnect the clone player here but I can't figure out a way to do that so hahahahahaaaaaaaa
+																			server_utils.removeElementFromArray(player, players);
+																			server_utils.removeElementFromArray(player, thisPlayerRoom.players);
+																		}
 																	}
 																})
 															}
