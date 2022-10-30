@@ -286,23 +286,25 @@ class Player extends PIXI.Sprite{
 		})
 	}
 	updateGear(){
-		this.setGearIndex()
-		this.gear.sort(function(a,b){return a.index - b.index});
+		if(this.gear != undefined){
+			this.setGearIndex()
+			this.gear.sort(function(a,b){return a.index - b.index});
 
-		this.gearImgs.forEach((item) =>{
-			this.removeChild(item);
-		})
-		this.gearImgs = new Array();
-		
-		this.gear.forEach((item) =>{
-			let item_sprite = new Item(item.ItemId,this.lookingInt);
-			this.addChild(item_sprite);
-			this.gearImgs.push(item_sprite);
-		})
-		if(this.gearImgs.length > 0){
 			this.gearImgs.forEach((item) =>{
-				item.updateFrame(this.lookingInt);
+				this.removeChild(item);
 			})
+			this.gearImgs = new Array();
+			
+			this.gear.forEach((item) =>{
+				let item_sprite = new Item(item.ItemId,this.lookingInt);
+				this.addChild(item_sprite);
+				this.gearImgs.push(item_sprite);
+			})
+			if(this.gearImgs.length > 0){
+				this.gearImgs.forEach((item) =>{
+					item.updateFrame(this.lookingInt);
+				})
+			}
 		}
 	}
 }

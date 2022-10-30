@@ -71,7 +71,7 @@ socket.on('playerIsMoving', (player) =>{
 
 socket.on('playerSaid', (player) => {
 	let playerO = getElementFromArray(player, 'id', objects.children);
-	if(playerO != false){
+	if(playerO != false && playerO != undefined){
 		playerO.message = player.message;
 
 		if(playerO.messageTimeout != undefined){
