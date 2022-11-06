@@ -724,8 +724,8 @@
         "y": 0.5
       },
       "position": {
-        "x": 0,
-        "y": -63
+        "x": 3,
+        "y": -60
       }
     },
     "halloween_scarf_4.png": {
@@ -753,7 +753,7 @@
       },
       "position": {
         "x": 0,
-        "y": -63
+        "y": -60
       }
     },
     "green_frog_hat_2.png": {
@@ -808,8 +808,8 @@
         "y": 0.5
       },
       "position": {
-        "x": 0,
-        "y": -63
+        "x": -2.5,
+        "y": -60
       }
     },
     "halloween_scarf_1.png": {
@@ -836,8 +836,8 @@
         "y": 0.5
       },
       "position": {
-        "x": 0,
-        "y": -50
+        "x": -0.5,
+        "y": -59
       }
     },
     "halloween_scarf_2.png": {
@@ -864,8 +864,8 @@
         "y": 0.5
       },
       "position": {
-        "x": 0,
-        "y": -50
+        "x": 1.5,
+        "y": -60
       }
     },
     "halloween_scarf_5.png": {
@@ -892,8 +892,8 @@
         "y": 0.5
       },
       "position": {
-        "x": 0,
-        "y": -50
+        "x": -2.5,
+        "y": -60
       }
     },
     "red_nose_3.png": {
@@ -920,8 +920,8 @@
         "y": 0.5
       },
       "position": {
-        "x": 14,
-        "y": -48
+        "x": 15,
+        "y": -50
       }
     },
     "red_nose_4.png": {
@@ -949,7 +949,7 @@
       },
       "position": {
         "x": 0,
-        "y": -48
+        "y": -50
       }
     },
     "red_nose_6.png": {
@@ -976,8 +976,8 @@
         "y": 0.5
       },
       "position": {
-        "x": -12,
-        "y": -48
+        "x": -14.5,
+        "y": -50
       }
     },
     "green_frog_hat_5.png": {
@@ -1092,66 +1092,94 @@
         "y": -113
       }
     },
-    "red_propeller_hat_1.png": {
+    "blue_baseball_cap_6.png": {
       "frame": {
         "x": 570,
         "y": 75,
-        "w": 64,
-        "h": 42
+        "w": 69,
+        "h": 37
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 64,
-        "h": 42
+        "w": 69,
+        "h": 37
       },
       "sourceSize": {
-        "w": 64,
-        "h": 42
+        "w": 69,
+        "h": 37
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       },
       "position": {
-        "x": 0.5,
-        "y": -101
+        "x": 0,
+        "y": -105
       }
     },
-    "red_propeller_hat_2.png": {
+    "blue_baseball_cap_3.png": {
       "frame": {
         "x": 630,
         "y": 0,
-        "w": 61,
-        "h": 43
+        "w": 68,
+        "h": 37
       },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 61,
-        "h": 43
+        "w": 68,
+        "h": 37
       },
       "sourceSize": {
-        "w": 61,
-        "h": 43
+        "w": 68,
+        "h": 37
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       },
       "position": {
-        "x": 2,
-        "y": -110
+        "x": 1.5,
+        "y": -106
+      }
+    },
+    "blue_baseball_cap_4.png": {
+      "frame": {
+        "x": 630,
+        "y": 37,
+        "w": 62,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 37
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": -0.5,
+        "y": -106
       }
     },
     "red_propeller_hat_4.png": {
       "frame": {
-        "x": 630,
-        "y": 43,
+        "x": 692,
+        "y": 37,
         "w": 59,
         "h": 32
       },
@@ -1176,38 +1204,10 @@
         "y": -105
       }
     },
-    "red_propeller_hat_5.png": {
-      "frame": {
-        "x": 467,
-        "y": 186,
-        "w": 61,
-        "h": 43
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 61,
-        "h": 43
-      },
-      "sourceSize": {
-        "w": 61,
-        "h": 43
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      },
-      "position": {
-        "x": -3,
-        "y": -110
-      }
-    },
     "red_propeller_hat_3.png": {
       "frame": {
-        "x": 404,
-        "y": 193,
+        "x": 751,
+        "y": 37,
         "w": 55,
         "h": 36
       },
@@ -1234,8 +1234,8 @@
     },
     "red_propeller_hat_6.png": {
       "frame": {
-        "x": 528,
-        "y": 190,
+        "x": 698,
+        "y": 0,
         "w": 55,
         "h": 36
       },
@@ -1258,6 +1258,174 @@
       "position": {
         "x": 0,
         "y": -109
+      }
+    },
+    "red_propeller_hat_2.png": {
+      "frame": {
+        "x": 467,
+        "y": 186,
+        "w": 61,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 61,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 61,
+        "h": 43
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 2,
+        "y": -110
+      }
+    },
+    "red_propeller_hat_5.png": {
+      "frame": {
+        "x": 404,
+        "y": 193,
+        "w": 61,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 61,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 61,
+        "h": 43
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": -3,
+        "y": -110
+      }
+    },
+    "blue_baseball_cap_2.png": {
+      "frame": {
+        "x": 528,
+        "y": 190,
+        "w": 67,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 67,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 67,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": -107
+      }
+    },
+    "blue_baseball_cap_1.png": {
+      "frame": {
+        "x": 465,
+        "y": 229,
+        "w": 63,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 63,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 63,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": -105
+      }
+    },
+    "red_propeller_hat_1.png": {
+      "frame": {
+        "x": 595,
+        "y": 190,
+        "w": 64,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 42
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0.5,
+        "y": -101
+      }
+    },
+    "blue_baseball_cap_5.png": {
+      "frame": {
+        "x": 639,
+        "y": 74,
+        "w": 63,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 63,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 63,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": -0,
+        "y": -105
       }
     }
   },

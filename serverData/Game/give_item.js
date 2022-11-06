@@ -1,5 +1,5 @@
 exports.run = (socket, AFKTime, PlayFabServer, server_utils, rateLimiter)=>{
-    var freeItems = ["green_frog_hat","red_propeller_hat","halloween_scarf","red_nose"];
+    var freeItems = ["pirate_hat","blue_baseball_cap"];
 
     socket.on('getFreeItem', (itemInfo) => {
         rateLimiter.consume(socket.id).then(()=>{

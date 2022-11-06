@@ -1,6 +1,6 @@
 {
   "frames": {
-    "halloween_cabin_Background.png": {
+    "cabin_Background.png": {
       "frame": {
         "x": 0,
         "y": 0,
@@ -24,7 +24,7 @@
         "y": 0.5
       }
     },
-    "halloween_cabin_Foreground.png": {
+    "cabin_Foreground.png": {
       "frame": {
         "x": 0,
         "y": 600,
@@ -46,13 +46,9 @@
       "pivot": {
         "x": 0.5,
         "y": 0.5
-      },
-      "position": {
-        "x": 0,
-        "y": 0
       }
     },
-    "halloween_cabin_table.png": {
+    "cabin_table.png": {
       "frame": {
         "x": 0,
         "y": 1200,
@@ -84,7 +80,7 @@
   "meta": {
     "app": "http://github.com/odrick/free-tex-packer-core",
     "version": "0.3.4",
-    "image": "../Sprites/rooms/halloween_cabin/halloween_cabin.png",
+    "image": "../Sprites/rooms/cabin/cabin.png",
     "format": "RGBA8888",
     "size": {
       "w": 1000,

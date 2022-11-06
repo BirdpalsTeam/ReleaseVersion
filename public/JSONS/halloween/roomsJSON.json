@@ -4,6 +4,14 @@
     "NPCs": [],
     "triggers": [
       [
+        114,
+        300,
+        246,
+        406,
+        "getFreeItem",
+        "green_frog_hat"
+      ],
+      [
         661,
         244,
         779,
@@ -13,7 +21,7 @@
         0
       ]
     ],
-    "music": "Songbirds.mp3",
+    "music": "Moonlight Hall.mp3",
     "colliders": [
       [
         0,
@@ -75,12 +83,20 @@
     ],
     "triggers": [
       [
-        705,
+        589,
+        127,
+        694,
         234,
-        862,
-        323,
         "getFreeItem",
-        "pirate_hat"
+        "red_propeller_hat"
+      ],
+      [
+        306,
+        66,
+        399,
+        233,
+        "getFreeItem",
+        "red_nose"
       ],
       [
         12,
@@ -88,7 +104,7 @@
         105,
         337,
         "changeRoom",
-        "attic",
+        "shop",
         0
       ],
       [
@@ -101,7 +117,7 @@
         0
       ]
     ],
-    "music": "Cabin.mp3",
+    "music": "Waltz of the Carnies.mp3",
     "colliders": [
       [
         0.5,
@@ -181,7 +197,7 @@
       875,
       550
     ],
-    "music": "Cabin.mp3",
+    "music": "Moonlight Hall.mp3",
     "colliders": [
       [
         0.5,
@@ -234,83 +250,6 @@
       [
         999.5,
         598
-      ]
-    ]
-  },
-  "attic": {
-    "name": "attic",
-    "music": "Cabin.mp3",
-    "colliders": [
-      [
-        0.5,
-        598
-      ],
-      [
-        1,
-        361
-      ],
-      [
-        120,
-        235
-      ],
-      [
-        333,
-        231
-      ],
-      [
-        670,
-        222
-      ],
-      [
-        677.5,
-        187
-      ],
-      [
-        755,
-        188
-      ],
-      [
-        772,
-        226
-      ],
-      [
-        855,
-        203
-      ],
-      [
-        914,
-        229
-      ],
-      [
-        910,
-        273
-      ],
-      [
-        1000.5,
-        362
-      ],
-      [
-        999.5,
-        598
-      ]
-    ],
-    "triggers": [
-      [
-        11,
-        291,
-        134,
-        383,
-        "changeRoom",
-        "cabin",
-        0
-      ],
-      [
-        153,
-        173,
-        243,
-        262,
-        "getFreeItem",
-        "blue_baseball_cap"
       ]
     ]
   }

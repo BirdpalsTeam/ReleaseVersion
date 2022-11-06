@@ -20,10 +20,10 @@ function sendMessage(){
 }
 
 /*
-document.getElementById('bird_color').addEventListener("input", function(c){
-	let color = c.target.value.replace('#',"0x");
-	localPlayer.filters = [new BirdColorReplacement(color)];
-	inventory.big_bird.updateColor();
+document.getElementById('bird_color_bottom').addEventListener("input", function(c){
+	let bottomColor = c.target.value.replace('#',"0x");
+	//let topColor = document.getElementById("bird_color_top").value;
+	localPlayer.birdSprite.filters = [new MultiBirdColorReplacement(0x38a2eb,0x359ade,bottomColor,0x359ade)];
 }, false);
 */
 

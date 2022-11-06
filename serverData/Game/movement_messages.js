@@ -16,7 +16,13 @@ exports.run = (socket, rooms, AFKTime, client, server_discord, server_utils, pro
 			}else{
 				clearInterval(player.movePlayerInterval);
 				player.isMoving = false;
+				try{
 				player.move(thisPlayerRoom); //This is where the player moving bug is. I don't know what causes it.
+				}
+				catch(err){
+					console.log(err);
+					console.log("Player: " + player);
+				}
 			}
 			socket.broadcast.to(socket.gameRoom).emit('playerIsMoving', movePlayerObject);
     })//Player Movement end
@@ -58,7 +64,7 @@ exports.run = (socket, rooms, AFKTime, client, server_discord, server_utils, pro
 	})
 
 	socket.on('/room', (message) =>{
-		rateLimiter.consume(socket.id).then(()=>{
+		//rateLimiter.consume(socket.id).then(()=>{
 			if(socket.playerId == undefined) return;
 			server_utils.resetTimer(socket, AFKTime);
 			let thisPlayerRoom = server_utils.getElementFromArrayByValue(socket.gameRoom, 'name', Object.values(rooms));
@@ -70,10 +76,10 @@ exports.run = (socket, rooms, AFKTime, client, server_discord, server_utils, pro
 				clearInterval(player.movePlayerInterval);
 				player.isMoving = false;
 			}
-			player.x = wantedRoom.exit[0];
-			player.y = wantedRoom.exit[1];
-			player.mouseX = wantedRoom.exit[2];
-			player.mouseY = wantedRoom.exit[3];
+			player.x = wantedRoom.entrances[0][0];
+			player.y = wantedRoom.entrances[0][1];
+			player.mouseX = wantedRoom.entrances[0][0];
+			player.mouseY = wantedRoom.entrances[0][1];
 			server_utils.removeElementFromArray(player, thisPlayerRoom.players); //Remove player from the room
 			socket.broadcast.to(socket.gameRoom).emit('byePlayer', player);//Say to everyone on the room that this player is gone
 			socket.emit('leaveRoom');
@@ -93,8 +99,8 @@ exports.run = (socket, rooms, AFKTime, client, server_discord, server_utils, pro
 				}
 			})
 			socket.emit('loggedIn', (preventRecursion)); //Say to the player who are in the new room
-		}).catch(()=>{
-			console.log(`This guy is trying to DoS /rooms ${socket.playerId}`);
-		})
+		//}//).catch(()=>{
+		//	console.log(`This guy is trying to DoS /rooms ${socket.playerId}`); Removed because this would appear when players switched rooms too quickly
+		//})
 	})
 }

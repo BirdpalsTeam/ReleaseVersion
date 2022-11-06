@@ -55,7 +55,7 @@ class Room extends PIXI.Sprite{
 	activateTrigger(triggerArray){
 		switch(triggerArray[4]){
 			case "changeRoom":
-				setLocalMessage("/room " + triggerArray[5]);
+				setLocalMessage("/room " + triggerArray[5] + " " + triggerArray[6]);
 				loading_screen.hidden = false;
 				break;
 			case "getFreeItem":
@@ -105,10 +105,12 @@ class Foreground extends PIXI.Sprite{
 			this.texture = resources[newRoom].textures[`${newRoom}_Foreground.png`];
 			this.Data = resources[newRoom].data.frames[`${newRoom}_Foreground.png`];
 			this.y = this.Data.frame.y - this.Data.frame.h;
+			this.x = 1000 - this.Data.frame.w;
 		}else{
 			this.texture = currentRoom.loader.resources[newRoom].textures[`${newRoom}_Foreground.png`];
 			this.Data = currentRoom.loader.resources[newRoom].data.frames[`${newRoom}_Foreground.png`];
 			this.y = this.Data.frame.y - this.Data.frame.h;
+			this.x = 1000 - this.Data.frame.w;
 		}
 	}
 }

@@ -1,13 +1,16 @@
-class Player extends PIXI.Sprite{
+class Player extends PIXI.Container{
 	constructor(player) {
-		super(resources.bird_blue.textures['4.png']);
+		super();
 		this.id = player.id;
 		this.username = player.username;
 
 		this.isMoving = player.isMoving;
 		this.x = player.x;
 		this.y = player.y;
-		this.anchor.set(0.5, 0.7);
+
+		this.birdSprite = new PIXI.Sprite(resources.bird_blue.textures['4.png'])
+		this.birdSprite.anchor.set(0.5, 0.7);
+		this.birdSprite = this.addChild(this.birdSprite)
 
 		this.mouseX = player.mouseX;
 		this.mouseY = player.mouseY;
@@ -86,7 +89,7 @@ class Player extends PIXI.Sprite{
 		}else if(angleToLook > 330 && angleToLook <= 360 || angleToLook <= 70){//look to the right
 			this.lookingInt = 3;
 		}
-		this.texture = resources.bird_blue.textures[`${this.lookingInt}.png`];
+		this.birdSprite.texture = resources.bird_blue.textures[`${this.lookingInt}.png`];
 		if(this.gearImgs.length > 0){
 			this.gearImgs.forEach((item) =>{
 				item.updateFrame(this.lookingInt);
