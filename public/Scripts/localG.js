@@ -19,13 +19,18 @@ function sendMessage(){
 	}
 }
 
-/*
+let bottomColor = 0x38a2eb;
+let topColor = 0x359ade;
+
 document.getElementById('bird_color_bottom').addEventListener("input", function(c){
-	let bottomColor = c.target.value.replace('#',"0x");
-	//let topColor = document.getElementById("bird_color_top").value;
-	localPlayer.birdSprite.filters = [new MultiBirdColorReplacement(0x38a2eb,0x359ade,bottomColor,0x359ade)];
+	app.bottomColour = c.target.value.replace('#',"0x");
+	app.changeBirdFilter();
 }, false);
-*/
+document.getElementById('bird_color_top').addEventListener("input", function(c){
+	app.topColour = c.target.value.replace('#',"0x");
+	app.changeBirdFilter();
+}, false);
+
 
 inventory = null;
 document.getElementById('inventory').onclick = function(){

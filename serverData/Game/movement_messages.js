@@ -1,30 +1,32 @@
-exports.run = (socket, rooms, AFKTime, client, server_discord, server_utils, profanity, rateLimiter) => {
+exports.run = (socket, rooms, AFKTime, PlayFabAdmin, client, server_discord, server_utils, profanity, rateLimiter) => {
 	socket.on('playerMovement', (playerMovement) =>{
 			if(socket.playerId == undefined) return;
 			server_utils.resetTimer(socket, AFKTime);
 			let thisPlayerRoom = server_utils.getElementFromArrayByValue(socket.gameRoom, 'name', Object.values(rooms));
 			let player = server_utils.getElementFromArrayByValue(socket.playerId, 'id', thisPlayerRoom.players);
-			let movePlayerObject = {
-				id: player.id,
-				mouseX: playerMovement.mouseX, 
-				mouseY: playerMovement.mouseY
-			}
-			player.mouseX = playerMovement.mouseX;
-			player.mouseY = playerMovement.mouseY;
-			if(player.isMoving == false){
-				player.move(thisPlayerRoom);
-			}else{
-				clearInterval(player.movePlayerInterval);
-				player.isMoving = false;
-				try{
-				player.move(thisPlayerRoom); //This is where the player moving bug is. I don't know what causes it.
+			if(player != false){
+				let movePlayerObject = {
+					id: player.id,
+					mouseX: playerMovement.mouseX, 
+					mouseY: playerMovement.mouseY
 				}
-				catch(err){
-					console.log(err);
-					console.log("Player: " + player);
+				player.mouseX = playerMovement.mouseX;
+				player.mouseY = playerMovement.mouseY;
+				if(player.isMoving == false){
+					player.move(thisPlayerRoom);
+				}else{
+					clearInterval(player.movePlayerInterval);
+					player.isMoving = false;
+					try{
+					player.move(thisPlayerRoom); //This is where the player moving bug is. I don't know what causes it.
+					}
+					catch(err){
+						console.log(err);
+						console.log("Player: " + player);
+					}
 				}
+				socket.broadcast.to(socket.gameRoom).emit('playerIsMoving', movePlayerObject);
 			}
-			socket.broadcast.to(socket.gameRoom).emit('playerIsMoving', movePlayerObject);
     })//Player Movement end
 
 	socket.on('message',(message)=>{
@@ -103,4 +105,38 @@ exports.run = (socket, rooms, AFKTime, client, server_discord, server_utils, pro
 		//	console.log(`This guy is trying to DoS /rooms ${socket.playerId}`); Removed because this would appear when players switched rooms too quickly
 		//})
 	})
+
+	socket.on('makeMeInvisible',(i) => {
+		let thisPlayerRoom = server_utils.getElementFromArrayByValue(socket.gameRoom, 'name', Object.values(rooms));
+		let player = server_utils.getElementFromArrayByValue(socket.playerId, 'id', thisPlayerRoom.players);
+		player.visible = false;
+		info = {id:socket.playerId};
+		socket.broadcast.to(socket.gameRoom).emit('makeInvisible', info);
+	});
+
+	socket.on('finishedChangingColour',(colours) => {
+		rateLimiter.consume(socket.id).then(()=>{
+			try{
+				let thisPlayerRoom = server_utils.getElementFromArrayByValue(socket.gameRoom, 'name', Object.values(rooms));
+				let player = server_utils.getElementFromArrayByValue(socket.playerId, 'id', thisPlayerRoom.players);
+				player.colours.top = colours.top;
+				player.colours.bottom = colours.bottom;
+				player.visible = true;
+				info = {colours:colours, id:socket.playerId};
+				socket.broadcast.to(socket.gameRoom).emit('colourChange', info);
+				updatePlayFabColours()
+
+				function updatePlayFabColours(){
+					PlayFabAdmin.UpdateUserReadOnlyData({PlayFabId: socket.playerId, Data:{topColour: colours.top.toString(), bottomColour: colours.bottom.toString()}}, (error, result) =>{
+						if(error !== null){
+							console.log(error);
+						}
+					})
+				}
+			}
+			catch(err){
+				console.log(err)
+			}
+		});
+	});
 }

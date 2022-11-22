@@ -79,6 +79,15 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 															if(result.data.Data.biography != undefined && profanity.filter(biography) == true){
 																biography = "love";
 															}
+
+															//Check if the Player has a Colour
+															let tempTopColour = 0x359ade;
+															let tempBottomColour = 0x38a2eb;
+															if(result.data.Data.topColour != undefined && result.data.Data.bottomColour != undefined){
+																tempTopColour = Number(result.data.Data.topColour.Value);
+																tempBottomColour = Number(result.data.Data.bottomColour.Value);
+															}
+
 															if(players.length > 0){	//Check if there is at least one player online
 																					//This doesn't work and there's a new solution but I'm scared to remove it
 																let logged, preventRecursion;
@@ -100,10 +109,10 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 																	logged = true;
 																}
 																
-																logged == true ? logged = false : createPlayer(PlayFabId, inventory, biography);	//If the player is not logged in create player
+																logged == true ? logged = false : createPlayer(PlayFabId, inventory, biography, tempTopColour, tempBottomColour);	//If the player is not logged in create player
 																
 															}else{	//If not create this first player
-																createPlayer(PlayFabId, inventory, biography);
+																createPlayer(PlayFabId, inventory, biography, tempTopColour, tempBottomColour);
 															}
 														}else if(error !== null){
 															console.log("Get User Readable data error: " + error);
@@ -120,7 +129,7 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 											if(IPBanned.indexOf(playerIP) != -1){server_utils.removeElementFromArray(playerIP, IPBanned)};
 										}
 
-										function createPlayer(thisPlayer, inventory, biography){
+										function createPlayer(thisPlayer, inventory, biography, topColour, bottomColour){
 											PlayFabServer.GetFriendsList({PlayFabId: PlayFabId}, (error, result)=>{
 												if(error !== null){
 													console.log(error);
@@ -168,7 +177,7 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 													})
 
 													//Adds Player to Rooms and Other Clients
-													thisPlayer = new Player(PlayFabId, resultFromAuthentication.data.UserInfo.TitleInfo.DisplayName, playerGear, biography, result.data.Friends);
+													thisPlayer = new Player(PlayFabId, resultFromAuthentication.data.UserInfo.TitleInfo.DisplayName, playerGear, biography, result.data.Friends, topColour, bottomColour);
 													if(server_utils.getElementFromArrayByValue(PlayFabId, 'id', devTeam.devs) != false){
 														socket.isDev = true;
 													}else if(server_utils.getElementFromArrayByValue(PlayFabId, 'id', modTeam.mods) != false){

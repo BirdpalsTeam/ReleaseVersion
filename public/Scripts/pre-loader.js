@@ -28,6 +28,10 @@ var particles;
 var chatbox = document.getElementById("chatbox");
 var isChatBoxToggle = false;
 
+var inputElements = document.getElementById("inputElements")
+
+var colourPickers = document.getElementById("colourPickers")
+
 window.onload = ()=>{
 	app = new WorldState(document.getElementById('game'));
 
@@ -61,7 +65,6 @@ function loadWorld(){
 	app.loader.add('shader', `Scripts/shader.frag`);
 	app.loader.add('invertColourShader', `Shaders/invertColour.frag`);
 	app.loader.add('bubblePop', `${audioSrc}bubblePop.wav`)
-	console.log(app.loader)
 	
 	app.loader.onProgress.add(showLoading);
 	app.loader.onComplete.add(finishedPreLoading);

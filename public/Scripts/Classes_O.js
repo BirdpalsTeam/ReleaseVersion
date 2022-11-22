@@ -31,6 +31,7 @@ class Book extends PIXI.Sprite{
 		this.username = player.username;
 		//Big Bird
 		this.big_bird = new Player(player);
+		this.big_bird.birdSprite.filters = player.birdSprite.filters;
 		this.big_bird.x = 160;
 		this.big_bird.y = 210;
 		this.big_bird.scale.set(1.2,1.2);

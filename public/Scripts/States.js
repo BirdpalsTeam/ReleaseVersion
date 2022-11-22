@@ -1,14 +1,20 @@
-var worldResources;
 function changeState(newState){
-	worldResources = {};
-	worldResources = app.loader.resources;
 	app.destroy();
 	app = newState;
 }
 function revertToWorld(){
 	app.destroy();
 	app = new WorldState(canvas);
-	resources = worldResources;
+
+	app.viewport.addChild(rooms);
+	app.viewport.addChild(objects);
+	app.viewport.addChild(foreground);
+	app.viewport.addChild(particles);
+	app.viewport.addChild(UI);
+
+	chatbox.hidden = false;
+	inputElements.hidden = false;
+	colourPickers.hidden = true;
 }
 
 class State extends PIXI.Application{
@@ -18,13 +24,17 @@ class State extends PIXI.Application{
 			height: 600,
 			view: htmlElement
 		});
-		resources = this.loader.resources;
+		if(resources == null || resources == undefined){
+			resources = this.loader.resources;
+		}
 		this.stage.on('pointerdown', (evt)=>{
 			this.onClick(evt);
 		})
 		this.stage.on('pointermove', (evt)=>{
 			this.onMouseMove(evt);
 		})
+
+		this.state_name = "state"
 
 	}
 
@@ -50,6 +60,8 @@ class WorldState extends State{
 		})
 
 		this.stage.addChild(this.viewport);
+
+		this.state_name = "world_state"
 	}
 
 	onClick(evt){
@@ -63,6 +75,118 @@ class WorldState extends State{
 			}
 			socket.emit('playerMovement', playerMovement);
 		} 
+	}
+}
+
+class ColourChangeState extends State{
+	constructor(htmlElement){
+		super(htmlElement);
+		this.stage.interactive = true;
+		this.viewport = new pixi_viewport.Viewport({
+			screenWidth: window.innerWidth,
+			screenHeight: window.innerHeight,
+			worldWidth: this.stage.width,
+			worldHeight: this.stage.height,
+		
+			interaction: this.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
+		})
+
+		chatbox.hidden = true;
+		inputElements.hidden = true;
+		colourPickers.hidden = false;
+
+		this.bg = this.stage.addChild(PIXI.Sprite.from("Sprites/other/colourChangerBackground.png"))
+		this.exit = this.stage.addChild(PIXI.Sprite.from("Sprites/hud/closereport.png"))
+		this.exit.on('pointerdown', (event) => {
+			this.exitState()
+		});
+		this.exit.interactive = true;
+		this.exit.x = 928;
+		this.exit.y = 20;
+
+		this.line = this.stage.addChild(new PIXI.Graphics());
+		this.line.lineStyle(2,0x000000);
+		this.line.moveTo(500,450);
+		this.line.lineTo(500,600);
+
+		this.player = this.stage.addChild(new Player(localPlayer))
+		this.player.scale.set(1.2,1.2);
+		this.player.lookingInt = 4;
+		this.player.updateTexturesToLook();
+		this.player.position.x = 500;
+		this.player.position.y = 300;
+		
+		//this.topColour = 0x359ade;
+		//this.bottomColour = 0x38a2eb;
+
+		this.topColour = localPlayer.topColour;
+		this.bottomColour = localPlayer.bottomColour;
+		this.changeBirdFilter();
+
+		this.topText = this.stage.addChild(new PIXI.BitmapText("Top",{
+			fontName: 'Arial',
+			fontSize: 14,
+			align: 'center',
+			tint: 0x000000,
+		}));
+		this.topText.x = 315;
+		this.topText.y = 452;
+		this.bottomText = this.stage.addChild(new PIXI.BitmapText("Bottom",{
+			fontName: 'Arial',
+			fontSize: 14,
+			align: 'center',
+			tint: 0x000000,
+		}));
+		this.bottomText.x = 670;
+		this.bottomText.y = 452;
+		//						Red		Orange	Yellow	  Green   D Green   L Blue  D Blue	   Purple  Pink		White	Grey		Black	Brown
+		this.topColourVals = [0xFF352B,0xFF8C35,0xEFDA51,0x71F35C,0x3F9630,0x359ade,0x003466,0x8C29F5,0xD9A5F1,0xEAEAEA,0x56535B,0x1F1E21,0x873F36]
+		socket.emit('makeMeInvisible',{})
+		this.addColours();
+	}
+
+	addColours(){
+		for(let c = 0; c < this.topColourVals.length; c++){
+			this.stage.addChild(new Colour(172+c*22,480,this.topColourVals[c],true))
+		}
+		for(let c = 0; c < this.topColourVals.length; c++){
+			this.stage.addChild(new Colour(540+c*22,480,this.topColourVals[c],false))
+		}
+	}
+
+	changeBirdFilter(){
+		this.player.birdSprite.filters = [new MultiBirdColorReplacement(0x38a2eb,0x359ade,this.bottomColour,this.topColour)]
+	}
+
+	exitState(){
+		localPlayer.topColour = app.topColour;
+		localPlayer.bottomColour = app.bottomColour;
+		localPlayer.updateColours();
+		socket.emit('finishedChangingColour',{top:app.topColour,bottom:app.bottomColour})
+		revertToWorld(canvas);
+		
+	}
+}
+class Colour extends PIXI.Graphics{
+	constructor(x,y,colour,top){
+		super();
+		this.interactive = true;
+		let size = 20;
+		this.beginFill(colour);
+		this.drawRoundedRect(x, y, size, size, 4);
+
+		this.colour = colour;
+		this.isTop = top;
+
+		this.on('pointerdown', (event) => {
+			if(this.isTop){
+				app.topColour = this.colour;
+			}
+			else{
+				app.bottomColour = this.colour;
+			}
+			app.changeBirdFilter();
+		});
 	}
 }
 

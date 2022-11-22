@@ -4,16 +4,47 @@
     "NPCs": [],
     "triggers": [
       [
+        427,
+        302,
+        598,
+        399,
+        "changeState",
+        "colourChangeState"
+      ],
+      [
+        427,
+        302,
+        598,
+        399,
+        "getFreeItem",
+        "rainbow_scarf"
+      ],
+      [
+        786,
+        299,
+        915,
+        396,
+        "getFreeItem",
+        "pink_propeller_hat"
+      ],
+      [
+        169,
+        244,
+        257,
+        395,
+        "getFreeItem",
+        "red_cape"
+      ],
+      [
         661,
         244,
         779,
         385,
         "changeRoom",
-        "cabin",
-        0
+        "cabin"
       ]
     ],
-    "music": "Songbirds.mp3",
+    "music": "17 Billion Colours of the Rainbow.wav",
     "colliders": [
       [
         0,
@@ -301,8 +332,7 @@
         134,
         383,
         "changeRoom",
-        "cabin",
-        0
+        "cabin"
       ],
       [
         153,

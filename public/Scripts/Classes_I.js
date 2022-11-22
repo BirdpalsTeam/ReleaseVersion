@@ -4,14 +4,23 @@ class Inventory extends Book{
 		this.isChanging = false;
 		UI.addChild(this);
 		this.items = null;
+		this.pageStart = 0;
+		this.drawArrows();
 	}
 
 	customOpen(){
 		this.drawUsername();
 		this.drawGrid();
-		//this.drawArrows();
 		this.drawBio();
 		this.getInventory();
+		this.updateColours();
+	}
+
+	updateColours(){
+		console.log("Update Colours")
+		this.big_bird.topColour = localPlayer.topColour;
+		this.big_bird.bottomColour = localPlayer.bottomColour;
+		this.big_bird.updateColours();
 	}
 
 	customClose(){
@@ -64,15 +73,21 @@ class Inventory extends Book{
 	}
 
 	loadInventory(){
-		for(let i = 0; i < 16; i++){
+		let cell_i = 0;
+		for(let i = this.pageStart; i < this.pageStart+16; i++){
 			if(this.items[i] !== undefined){
-				this.cells[i].item = this.items[i];
-				this.cells[i].loadIcons(this.items[i]);
-				this.cells[i].interactive = true;
-				this.cells[i].buttonMode = true;
+				this.cells[cell_i].item = this.items[i];
+				this.cells[cell_i].loadIcons(this.items[i]);
+				this.cells[cell_i].interactive = true;
+				this.cells[cell_i].buttonMode = true;
+				this.cells[cell_i].visible = true;
 			}else{
-				this.cells[i].stopLoadingAnimation();
+				this.cells[cell_i].stopLoadingAnimation();
+				if(this.cells[cell_i].iconChild != undefined){
+					this.cells[cell_i].iconChild.visible = false;
+				}
 			}
+			cell_i++;
 		}
 	}
 
@@ -104,7 +119,7 @@ class Inventory extends Book{
 	}
 
 	drawArrows(){
-		this.addChild(new Arrow(740 , 420), new Arrow(505, 420, true));
+		this.addChild(new Arrow(740 , 430), new Arrow(690, 430, true));
 	}
 
 	drawBio(){
@@ -202,7 +217,6 @@ class Cell extends PIXI.Graphics{
 	}
 
 	stopLoadingAnimation(){
-		this.loadingSprite.ticker.destroy();
 		this.loadingSprite.visible = false;
 	}
 
@@ -213,6 +227,10 @@ class Cell extends PIXI.Graphics{
 	}
 
 	addIcon(item){
+		if(this.iconChild != undefined){
+			this.iconChild.destroy();
+			this.clearGray();
+		}
 		this.icon = new PIXI.Sprite(resources.items.textures[`${item.ItemId}_4.png`]);
 		if(this.icon.width > 25){ //Checks if the Item is big enough to be sized correctly (otherwise the strtching would be BAD)
 			if(this.icon.width > this.icon.height){ //Finds whether the width or height of the item is bigger, 
@@ -233,7 +251,7 @@ class Cell extends PIXI.Graphics{
 		this.icon.x = this.nx + this.width / 2 - 2;
 		this.icon.y = this.ny + this.height / 2 - 2;
 		if(this.isSelected == true) this.fillGray();
-		this.addChild(this.icon);
+		this.iconChild = this.addChild(this.icon);
 	}
 
 	fillGray(){
@@ -261,6 +279,20 @@ class Arrow extends PIXI.Sprite{
 		this.buttonMode = true;
 		this.on('pointerover', (event) => {this.tint = 0xA3A3A3});
 		this.on('pointerout', (event) => {this.tint = 0xFFFFFF});
+		this.on('pointerdown', (event) => {
+			if(!flip){
+				if(this.parent.pageStart + 16 < this.parent.items.length){
+					this.parent.pageStart += 16;
+				}
+			}
+			else{
+				if(this.parent.pageStart - 16 >= 0){
+					this.parent.pageStart -= 16;
+				}
+			}
+			this.cells = [];
+			this.parent.getInventory();
+		});
 	}
 }
 

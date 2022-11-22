@@ -119,6 +119,23 @@ socket.on("playerUpdatedGear", (info) => {
 	}
 })
 
+socket.on("colourChange", (info) => {
+	let player = getElementFromArrayByValue(info.id, 'id', playersInGame);
+	if(player != false){
+		player.topColour = info.colours.top;
+		player.bottomColour = info.colours.bottom;
+		player.updateColours();
+		player.visible = true;
+	}
+});
+
+socket.on("makeInvisible", (info) => {
+	let player = getElementFromArrayByValue(info.id, 'id', playersInGame);
+	if(player != false){
+		player.visible = false;
+	}
+});
+
 socket.on('M', (s) =>{
 	s.forEach((src) =>{
 		let script = document.createElement('script');

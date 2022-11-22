@@ -18,7 +18,7 @@
 	<body>
 
 		<div id ="stage">
-			<audio src="Audio/Songbirds.mp3" id='backgroundMusic' autoplay loop></audio>
+			<audio src="Audio/17 Billion Colours of the Rainbow.wav" id='backgroundMusic' autoplay loop></audio>
 			<center>
 				<img id='loading' src="Sprites/other/Loading.gif" class="loading">
 				<canvas id="game"></canvas>
@@ -45,11 +45,6 @@
 				<input id="input" type="text" maxlength="50" autocomplete="off" placeholder="Type a Message..."/>
 				<img id="SendButton" src="Sprites/hud/send.png" class="ButtonImg">
 			</form> 
-			<!--<div>
-				<input type="color" id="bird_color_top" value="#359ADE">
-				<input type="color" id="bird_color_bottom" value="#359ADE">
-				<label for="head">Bird Color</label>
-			</div>-->
 			<img src="Sprites/hud/inventory.png" id="inventory" class="ButtonImg">
 			<img src="Sprites/hud/settings.png" id="SettingsButton" class="ButtonImg">
 			<div id="SettingsDiv" hidden>
@@ -64,6 +59,12 @@
 				<p id="debugParagraph"></p>
 			</div>
 		</div>
+		<center>
+			<div id="colourPickers" hidden>
+				<input type="color" id="bird_color_top" value="#359ADE">
+				<input type="color" id="bird_color_bottom" value="#359ADE">
+			</div>
+		</center>
 
 		<div id='Scripts'>
 			<script src="/socket.io/socket.io.js"></script>
@@ -83,7 +84,7 @@
 			<script src="./Modules/Collisions.min.js"></script>
 			<script src="./Modules/decomp.min.js"></script>
 			
-			<script src="./Scripts/addScriptsToDoc.js"></script> <!--Adds Scripts without using the Cache (good thing)-->
+			<script src="./Scripts/addAddScriptsToDoc.js"></script> <!--Adds Scripts without using the Cache (good thing)-->
 		</div>
 	</body>
 </html>

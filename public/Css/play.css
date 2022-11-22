@@ -247,7 +247,7 @@ button:hover {
 }
 
 /* Buttons and UI*/
-#inputElements{
+.inputElements{
 	position: absolute;
 }
 #form{
@@ -328,4 +328,23 @@ button:hover {
 }
 #ChatBoxCheck{
 	top: 78px;
+}
+
+/*Colour Pickers*/
+#colourPickers{
+	text-align: center;
+}
+#bird_color_top{
+	z-index: 100;
+	position: fixed;
+	-ms-transform: translate(-112%, -50%);
+  	transform: translate(-112%, -50%);
+	top: 700px;
+}
+#bird_color_bottom{
+	z-index: 100;
+	position: fixed;
+	-ms-transform: translate(12%, -50%);
+  	transform: translate(12%, -50%);
+	top: 700px;
 }

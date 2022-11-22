@@ -11,7 +11,7 @@ vec4 changeColor(vec3 originalColor, vec3 newColor){
 	vec4 currentColor = texture2D(uSampler, vTextureCoord);
 	vec3 colorDiff = originalColor - (currentColor.rgb / max(currentColor.a, 0.0000000001));
 	float colorDistance = length(colorDiff);
-	float doReplace = step(colorDistance, 0.9); // Tolerance
+	float doReplace = step(colorDistance, 0.65); // Tolerance
 	return vec4(mix(currentColor.rgb, (newColor - colorDiff) * currentColor.a, doReplace), currentColor.a);
 }
 

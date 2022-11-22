@@ -129,7 +129,7 @@ io.on('connection', (socket) => {
 	
 	login.run(io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, PlayFabServer, PlayFabAdmin, profanity, server_utils, rateLimiter);
 
-	movement_messages.run(socket, rooms, AFKTime, client, server_discord, server_utils, profanity, rateLimiter); //Rooms command is here
+	movement_messages.run(socket, rooms, AFKTime, PlayFabAdmin, client, server_discord, server_utils, profanity, rateLimiter); //Rooms command is here
 
 	update_inventory.run(socket, rooms, AFKTime, PlayFabAdmin, PlayFabServer, server_utils, rateLimiter);
 

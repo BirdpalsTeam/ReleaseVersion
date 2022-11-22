@@ -1,6 +1,6 @@
 let { Point } = require('../Utils/Collisions.min.js');
 exports.Player = class Player{
-	constructor(id, username, gear=[], biography, friends=[]){
+	constructor(id, username, gear=[], biography, friends=[], topColour, bottomColour){
 		this.id = id;
 		this.username = username;
 		this.x = 500;
@@ -14,6 +14,11 @@ exports.Player = class Player{
 		this.bio = biography;
 		this.friends = friends;
 		this.collider = new Point(this.x, this.y);
+
+		//this.colours = {top:0x359ade,bottom:0x38a2eb}
+		this.colours = {top:topColour,bottom:bottomColour}
+
+		this.visible = true;
 	}
 	move(room){
 		this.isMoving = true;

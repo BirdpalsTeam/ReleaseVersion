@@ -61,6 +61,13 @@ class Room extends PIXI.Sprite{
 			case "getFreeItem":
 				socket.emit("getFreeItem", {name:triggerArray[5]});
 				break;
+			case "changeState":
+				switch(triggerArray[5]){
+					case "colourChangeState":
+						changeState(new ColourChangeState(canvas));
+						break;
+				}
+				break;
 		}
 	}
 

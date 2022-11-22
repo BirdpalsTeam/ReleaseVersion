@@ -10,7 +10,15 @@ class Player extends PIXI.Container{
 
 		this.birdSprite = new PIXI.Sprite(resources.bird_blue.textures['4.png'])
 		this.birdSprite.anchor.set(0.5, 0.7);
-		this.birdSprite = this.addChild(this.birdSprite)
+		this.birdSprite = this.addChild(this.birdSprite);
+
+		if(player.colours !== undefined){
+			this.topColour = player.colours.top;
+			this.bottomColour = player.colours.bottom;
+			this.updateColours();
+		}
+
+		this.visible = player.visible;
 
 		this.mouseX = player.mouseX;
 		this.mouseY = player.mouseY;
@@ -66,6 +74,15 @@ class Player extends PIXI.Container{
 		this.whereToLook();
 	}
 
+	updateColours(){
+		try{
+			this.birdSprite.filters = [new MultiBirdColorReplacement(0x38a2eb,0x359ade,this.bottomColour,this.topColour)]
+		}
+		catch(err){
+			console.log(err)
+		}
+	}
+
 	whereToLook(){
 		let dx = this.mouseX - this.x;
 		let dy = this.mouseY - this.y;
@@ -89,6 +106,10 @@ class Player extends PIXI.Container{
 		}else if(angleToLook > 330 && angleToLook <= 360 || angleToLook <= 70){//look to the right
 			this.lookingInt = 3;
 		}
+		this.updateTexturesToLook();
+	}
+
+	updateTexturesToLook(){
 		this.birdSprite.texture = resources.bird_blue.textures[`${this.lookingInt}.png`];
 		if(this.gearImgs.length > 0){
 			this.gearImgs.forEach((item) =>{
@@ -243,8 +264,10 @@ class Player extends PIXI.Container{
 
 			this.bubble.visible = true;
 			this.bubbleTail.visible = true;
-
-    		PIXI.sound.play("bubblePop", {volume:0.25*globalSFXVol});
+			
+			if(app.state_name == "world_state"){
+    			PIXI.sound.play("bubblePop", {volume:0.25*globalSFXVol});
+			}
 
 			this.hideBubble();
 		}
@@ -276,14 +299,16 @@ class Player extends PIXI.Container{
 				case "feet":
 					item.index = 0;
 					break;
+				case "back":
+					item.index = 5;
 				case "neck":
-					item.index = 1;
+					item.index = 10;
 					break;
 				case "face":
-					item.index = 2;
+					item.index = 20;
 					break;
 				case "head":
-					item.index = 3;
+					item.index = 30;
 					break;
 			}
 		})
