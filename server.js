@@ -52,6 +52,11 @@ app.use(compression({filter: function (req, res) {
 
 //Send the public files to the domain
 app.get('/', (req, res) =>{
+	res.setHeader(
+		"Permissions-Policy",
+		'fullscreen=(self), geolocation=(self), camera=(), microphone=(), payment=(), autoplay=(self), document-domain=()'
+	);
+	
 	return res.sendFile(path.join(__dirname, `public/index.html`), function(err){
 		if(err){
 			return res.status(404).send(`Cannot Get /index.html`);

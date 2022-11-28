@@ -144,4 +144,6 @@ io.on('connection', (socket) => {
 
 //Discord
 discordBot.startBot(PlayFabServer, IPBanned, io);
+
+return;
 }

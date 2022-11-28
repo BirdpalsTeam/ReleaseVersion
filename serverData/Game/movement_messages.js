@@ -18,7 +18,7 @@ exports.run = (socket, rooms, AFKTime, PlayFabAdmin, client, server_discord, ser
 					clearInterval(player.movePlayerInterval);
 					player.isMoving = false;
 					try{
-					player.move(thisPlayerRoom); //This is where the player moving bug is. I don't know what causes it.
+					player.move(thisPlayerRoom);
 					}
 					catch(err){
 						console.log(err);
