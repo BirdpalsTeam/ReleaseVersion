@@ -52,10 +52,10 @@ app.use(compression({filter: function (req, res) {
 
 //Send the public files to the domain
 app.get('/', (req, res) =>{
-	res.setHeader(
+	/*res.setHeader(
 		"Permissions-Policy",
 		'fullscreen=(self), geolocation=(self), camera=(), microphone=(), payment=(), autoplay=(self), document-domain=()'
-	);
+	);*/
 	
 	return res.sendFile(path.join(__dirname, `public/index.html`), function(err){
 		if(err){
@@ -70,10 +70,10 @@ app.get('/*', (req, res, next) =>{
 	//}else{
 	//	return	res.status(404).send('Not found');
 	//} uncomment at final build
-	res.setHeader(
+	/*res.setHeader(
 		"Permissions-Policy",
 		'fullscreen=(self), geolocation=(self), camera=(), microphone=(), payment=(), autoplay=(self), document-domain=()'
-	);
+	);*/
 	
 	let options = {
         root: path.join(__dirname, 'public')
