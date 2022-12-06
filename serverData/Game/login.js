@@ -44,7 +44,7 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 						playerTags = response.data.Tags; //Gets tags from playfab
 						//playerTags.indexOf('title.238E6') == -1 means that this player doesn't have the isReliable tag
 						if(userInfo.PrivateInfo.Email != undefined && userInfo.TitleInfo.Created != undefined && playerTags.indexOf('title.238E6.isReliable') == -1){
-							if(profanity.filter(userInfo.TitleInfo.DisplayName) == true){ //If user's display name is a bad word, it changes to Bird + randomId
+							if(profanity.filter(userInfo.Username) == true){ //If user's display name is a bad word, it changes to Bird + randomId
 								let randomId = '';
 								let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 								let charactersLength = characters.length;
@@ -64,8 +64,10 @@ exports.run = (io, socket, players, Player, rooms, devTeam, modTeam, IPBanned, P
 					}).catch(console.log);
 					function login(resultFromAuthentication, PlayFabId){
 						PlayFabServer.GetPlayerProfile(playerProfileRequest, (error, result)=>{ //Get player profile
-							if(result !== null && result.data.PlayerProfile.ContactEmailAddresses[0] != undefined){
-									if(result.data.PlayerProfile.ContactEmailAddresses[0].VerificationStatus == "Confirmed"){ //Player is verified
+							// if(result !== null && result.data.PlayerProfile.ContactEmailAddresses[0] != undefined){
+								if(result !== null){
+									// if(result.data.PlayerProfile.ContactEmailAddresses[0].VerificationStatus == "Confirmed"){ //Player is verified
+									if(result !== null) {
 										if(playerTags.indexOf('title.238E6.isReliable') != -1){ //Ensures that the player was verified by this server.
 											PlayFabAdmin.GetUserInventory({PlayFabId: PlayFabId}, (error, result) =>{ //Get player inventory
 												if(result !== null){
