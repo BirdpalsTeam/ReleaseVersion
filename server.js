@@ -87,12 +87,12 @@ app.get('/*', (req, res, next) =>{
 			if(player.isDev !== undefined || player.isMod !== undefined){ // Guarantee it's not a normal player
 				res.sendFile(decodeURI(req.path), options, function (err) {
 					if (err) {
-						return res.status(404).send(`Cannot GET /${fileName}`);
+						return res.send(`Cannot GET /${fileName}`);
 					}
 				});
 			}
 		}else{
-			return res.status(404).send(`Cannot GET /${fileName}`);
+			return res.send(`Cannot GET /${fileName}`);
 		}
 	}else if(split[1] === 'Devs'){
 		let player = io.sockets.sockets[req.headers.cookie.split('io=')[1]]; //Get socket player
@@ -100,23 +100,23 @@ app.get('/*', (req, res, next) =>{
 			if(player.isDev !== undefined){ // Guarantee it's not a normal player
 				res.sendFile(decodeURI(req.path), options, function (err) {
 					if (err) {
-						return res.status(404).send(`Cannot GET /${fileName}`);
+						return res.send(`Cannot GET /${fileName}`);
 					}
 				});
 			}
 		}else{
-			return res.status(404).send(`Cannot GET /${fileName}`);
+			return res.send(`Cannot GET /${fileName}`);
 		}
 	}else if(split[1] !== 'Audio'){
 		res.sendFile(decodeURI(req.path), options, function (err) {
 			if (err) {
-				return res.status(404).send(`Cannot GET /${fileName}`);
+				return res.send(`Cannot GET /${fileName}`);
 			}
 		});
 	}else{
 		res.sendFile(path.join(__dirname, `public${decodeURI(req.path)}`), function(err){
 			if(err){
-				return res.status(404).send(`Cannot Get /${fileName}`);
+				return res.send(`Cannot Get /${fileName}`);
 			}
 		})
 	}
