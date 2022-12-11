@@ -55,7 +55,8 @@
     "entrances": [
       [505,280],
       [155,320]
-    ]
+    ],
+    "closed": false
   },
   "attic": {
     "name": "attic",
@@ -116,7 +117,8 @@
       "players": [],
       "entrances": [
         [176,359]
-      ]
+      ],
+      "closed": false
     },
   "town": {
 	"name": "town",
@@ -202,6 +204,7 @@
       "players": [],
       "entrances": [
         [176,359]
-      ]
+      ],
+      "closed": false
     }
 }

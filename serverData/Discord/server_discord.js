@@ -9,12 +9,16 @@ function embedText(who, message){
 	return new Discord.MessageEmbed().addField(who, message);
 }
 let prefix = '!';
-exports.startBot = (PlayFabServer, IPBanned, io) => {
+exports.startBot = (PlayFabServer, IPBanned, io, server_utils, rooms) => {
 	client.on('message' ,(message) =>{
 		if (!message.content.startsWith(prefix) || message.author.bot) return;
 		if(message.member.roles.cache.has('760901805436960800') || message.member.roles.cache.has('845072414048387102')){
 			const args = message.content.slice(prefix.length).trim().split(/ +/);
 			const command = args.shift().toLowerCase();
+
+			if(command == 'help'){
+				message.channel.send(embedText("BIRDO HELP", "!ban <timeForBan (hours)> <PlayerName> <IsIPBan> <reason> --- Bans Player or Player's IP for a time. \n\n !unban <PlayerName> --- Unbans a Player").setColor('#FFFFFF'));
+			}
 	
 			if(command == 'ban'){
 				let messageFromDiscord = server_utils.separateString(message.content);
@@ -115,6 +119,23 @@ exports.startBot = (PlayFabServer, IPBanned, io) => {
 						}
 					});
 				}).catch(console.log);
+			}
+
+			if(command == "closeroom"){
+				const messageFromDiscord = server_utils.separateString(message.content);
+				const roomToClose = messageFromDiscord[1];
+				const wantedRoom = server_utils.getElementFromArrayByValue(roomToClose, 'name', Object.values(rooms));
+				if(wantedRoom == false) return message.channel.send(embedText('Error:', 'Command contains invalid parameters.').setColor('#FFFB00'));;
+				wantedRoom.closed = true;
+				message.channel.send(embedText("ROOM CLOSED", "Closed Room "+roomToClose).setColor('#FF0000'));
+			}
+			if(command == "openroom"){
+				const messageFromDiscord = server_utils.separateString(message.content);
+				const roomToOpen = messageFromDiscord[1];
+				const wantedRoom = server_utils.getElementFromArrayByValue(roomToOpen, 'name', Object.values(rooms));
+				if(wantedRoom == false) return message.channel.send(embedText('Error:', 'Command contains invalid parameters.').setColor('#FFFB00'));;
+				wantedRoom.closed = false;
+				message.channel.send(embedText("ROOM OPENED", "Opened Room "+roomToOpen).setColor('#FF0000'));
 			}
 		}
 		

@@ -143,7 +143,7 @@ io.on('connection', (socket) => {
 }) // io connection end
 
 //Discord
-discordBot.startBot(PlayFabServer, IPBanned, io);
+discordBot.startBot(PlayFabServer, IPBanned, io, server_utils, rooms);
 
 return;
 }

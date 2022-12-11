@@ -136,6 +136,10 @@ socket.on("makeInvisible", (info) => {
 	}
 });
 
+socket.on("HideLoading", () => {
+	loading_screen.hidden = true;
+})
+
 socket.on('M', (s) =>{
 	s.forEach((src) =>{
 		let script = document.createElement('script');

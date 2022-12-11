@@ -74,33 +74,38 @@ exports.run = (socket, rooms, AFKTime, PlayFabAdmin, client, server_discord, ser
 			message = server_utils.separateString(message);
 			let wantedRoom = server_utils.getElementFromArrayByValue(message[1], 'name', Object.values(rooms));
 			if(wantedRoom == false) return; //Check if the room the player wants to go exists
-			if(player.isMoving == true){
-				clearInterval(player.movePlayerInterval);
-				player.isMoving = false;
-			}
-			player.x = wantedRoom.entrances[0][0];
-			player.y = wantedRoom.entrances[0][1];
-			player.mouseX = wantedRoom.entrances[0][0];
-			player.mouseY = wantedRoom.entrances[0][1];
-			server_utils.removeElementFromArray(player, thisPlayerRoom.players); //Remove player from the room
-			socket.broadcast.to(socket.gameRoom).emit('byePlayer', player);//Say to everyone on the room that this player is gone
-			socket.emit('leaveRoom');
-			socket.leave(socket.gameRoom); //Leave room on server
-			socket.join(wantedRoom.name); //Join new room
-			socket.gameRoom = wantedRoom.name;
-			wantedRoom.players.push(player);
-			socket.emit('joinRoom',{name: wantedRoom.name, posX: player.x, posY: player.y});
-			socket.broadcast.to(socket.gameRoom).emit('newPlayer', (player)); //Say to everyone on the new room that the player is there
-			let preventRecursion = wantedRoom.players;
-			preventRecursion.forEach(player =>{
+				if(!wantedRoom.closed){
 				if(player.isMoving == true){
 					clearInterval(player.movePlayerInterval);
 					player.isMoving = false;
-					player.x = player.mouseX;
-					player.y = player.mouseY;
 				}
-			})
-			socket.emit('loggedIn', (preventRecursion)); //Say to the player who are in the new room
+				player.x = wantedRoom.entrances[0][0];
+				player.y = wantedRoom.entrances[0][1];
+				player.mouseX = wantedRoom.entrances[0][0];
+				player.mouseY = wantedRoom.entrances[0][1];
+				server_utils.removeElementFromArray(player, thisPlayerRoom.players); //Remove player from the room
+				socket.broadcast.to(socket.gameRoom).emit('byePlayer', player);//Say to everyone on the room that this player is gone
+				socket.emit('leaveRoom');
+				socket.leave(socket.gameRoom); //Leave room on server
+				socket.join(wantedRoom.name); //Join new room
+				socket.gameRoom = wantedRoom.name;
+				wantedRoom.players.push(player);
+				socket.emit('joinRoom',{name: wantedRoom.name, posX: player.x, posY: player.y});
+				socket.broadcast.to(socket.gameRoom).emit('newPlayer', (player)); //Say to everyone on the new room that the player is there
+				let preventRecursion = wantedRoom.players;
+				preventRecursion.forEach(player =>{
+					if(player.isMoving == true){
+						clearInterval(player.movePlayerInterval);
+						player.isMoving = false;
+						player.x = player.mouseX;
+						player.y = player.mouseY;
+					}
+				})
+				socket.emit('loggedIn', (preventRecursion)); //Say to the player who are in the new room
+			}
+			else{
+				socket.emit("HideLoading")
+			}
 		//}//).catch(()=>{
 		//	console.log(`This guy is trying to DoS /rooms ${socket.playerId}`); Removed because this would appear when players switched rooms too quickly
 		//})
